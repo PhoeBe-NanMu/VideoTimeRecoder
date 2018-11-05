@@ -4,4 +4,4 @@
 注：MAC下需用MAC专用版ffmpeg，并且给权限chmod 777 ~/ffmpeg；将jave导入到library和modules/dependencies
 
 效果图：
-![image](https://github.com/PhoeBe-NanMu/VideoTimeRecoder/blob/master/Screenshot/Xnip2018-11-05_11-25-34.png)
+![image](VideoTimeRecoder/Screenshot/Xnip2018-11-05_11-25-34.png)
