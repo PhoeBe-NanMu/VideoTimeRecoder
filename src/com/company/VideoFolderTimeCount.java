@@ -59,6 +59,7 @@ public class VideoFolderTimeCount {
         return time;
     }
 
+    //格式:"00:00:10.68"
     private static int getTimelen(String timelen) {
         int min = 0;
         String strs[] = timelen.split(":");
@@ -77,6 +78,7 @@ public class VideoFolderTimeCount {
 
     //int allTime = 0;
     public int getVideoDuration(String path,int deep) {
+        // get all files in specified "path"
         File[] files = new File(path).listFiles();
         int thisDeep = deep;
 
@@ -96,10 +98,9 @@ public class VideoFolderTimeCount {
                 totalTime += getVideoDuration(files[i].toString(),harddeep);
 
             }else {
-                //System.out.println();
                 deepLoop(thisDeep);
                 System.out.print("【" + (i+1) + "】");
-                duration = getVideoTime(files[i].toString(),"/Users/leiyang/Downloads/ffmpeg",thisDeep);
+                duration = getVideoTime(files[i].toString(),"res/mac/ffmpeg",thisDeep);
                 if (duration > 0) {
                     count++;
                     totalTime += duration;
@@ -116,8 +117,6 @@ public class VideoFolderTimeCount {
         System.out.println(" 本层时长：" + folderTime/3600 + ":" + folderTime%3600/60 + ":" + folderTime%3600%60);
         deepLoop(thisDeep);
         System.out.println(" 全部时长：" + totalTime/3600 + ":" + totalTime%3600/60 + ":" + totalTime%3600%60);
-        //System.out.println();
-
         return totalTime;
 
     }
