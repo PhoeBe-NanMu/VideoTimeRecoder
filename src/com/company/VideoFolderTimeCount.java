@@ -1,17 +1,8 @@
 package com.company;
-import it.sauronsoftware.jave.Encoder;
-import it.sauronsoftware.jave.EncoderException;
-import it.sauronsoftware.jave.FFMPEGLocator;
-import it.sauronsoftware.jave.MultimediaInfo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -68,7 +59,6 @@ public class VideoFolderTimeCount {
         return time;
     }
 
-    //格式:"00:00:10.68"
     private static int getTimelen(String timelen) {
         int min = 0;
         String strs[] = timelen.split(":");
@@ -87,7 +77,6 @@ public class VideoFolderTimeCount {
 
     //int allTime = 0;
     public int getVideoDuration(String path,int deep) {
-        // get all files in specified "path"
         File[] files = new File(path).listFiles();
         int thisDeep = deep;
 
@@ -100,10 +89,7 @@ public class VideoFolderTimeCount {
         int count = 0;
 
         for (int i = 0; i < files.length; i++) {
-            // here, the format of video can be changed, JAVE upports dozens of formats
-            // && files[i].toString().endsWith(".mp4")
             if (files[i].isDirectory() ) {
-                //System.out.println();
                 deepLoop(thisDeep);
                 System.out.println("【"+(i+1)+"】文件夹：" +files[i].toString());
                 int harddeep = thisDeep +1;
@@ -136,16 +122,5 @@ public class VideoFolderTimeCount {
 
     }
 
-    /*
-    public int getAllTime() {
-        return allTime;
-    }
-    public void accountAllTime(){
-
-        int time = getAllTime();
-        System.out.print("\n        ");
-        System.out.println(" 所有文件夹总计时长：" + time/3600 + ":" + time%3600/60 + ":" + time%3600%60);
-
-    }*/
 
 }
