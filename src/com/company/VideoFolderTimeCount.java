@@ -52,7 +52,10 @@ public class VideoFolderTimeCount {
                 time = 0;
 
             }
-            System.out.println("时长：" + time/3600 + ":" + time%3600/60 + ":" + time%3600%60 +"  路径："+ video_path);
+            File tempFile = new File(video_path.trim());
+            String fileName = tempFile.getName();
+            System.out.printf("%-12s","时长：" + time/3600 + ":" + time%3600/60 + ":" + time%3600%60);
+            System.out.println("  文件名："+ fileName );
 
         } catch (Exception e) {
         }
@@ -99,7 +102,7 @@ public class VideoFolderTimeCount {
 
             }else {
                 deepLoop(thisDeep);
-                System.out.print("【" + (i+1) + "】");
+                System.out.printf("%-5s","【" + (i+1) + "】");
                 duration = getVideoTime(files[i].toString(),"res/mac/ffmpeg",thisDeep);
                 if (duration > 0) {
                     count++;
