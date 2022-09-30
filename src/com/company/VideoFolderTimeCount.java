@@ -103,7 +103,12 @@ public class VideoFolderTimeCount {
             }else {
                 deepLoop(thisDeep);
                 System.out.printf("%-5s","【" + (i+1) + "】");
-                duration = getVideoTime(files[i].toString(),"res/mac/ffmpeg",thisDeep);
+
+                // 按照操作系统修改ffmpeg位置,
+                // linux : ffmpeg
+                // Windows : /res/win/ffmpeg.exe
+                // MacOS: /res/mac/ffmpeg
+                duration = getVideoTime(files[i].toString(),"ffmpeg",thisDeep);
                 if (duration > 0) {
                     count++;
                     totalTime += duration;
