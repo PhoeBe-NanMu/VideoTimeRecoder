@@ -2,6 +2,9 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -83,6 +86,21 @@ public class VideoFolderTimeCount {
     public int getVideoDuration(String path,int deep) {
         // get all files in specified "path"
         File[] files = new File(path).listFiles();
+
+        // files下文件排序
+        assert files != null;
+        List<File> fileList = Arrays.asList(files);
+        fileList.sort(new Comparator<File>() {
+            @Override
+            public int compare(File o1, File o2) {
+                if (o1.isDirectory() && o2.isFile())
+                    return -1;
+                if (o1.isFile() && o2.isDirectory())
+                    return 1;
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+
         int thisDeep = deep;
 
         deepLoopL(thisDeep);
